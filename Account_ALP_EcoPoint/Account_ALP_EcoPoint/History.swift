@@ -12,35 +12,34 @@ struct CombinedView: View {
     
     @State private var email: String = "Livanty@gmail.com"
     @State private var name: String = "Nana Nunu"
-    @State private var language: String = "Indonesia"
     @State private var address: String = "Jl. Mau Hiling hue"
     @State private var provinceCityDistrict: String = "Jawa Timur\nSurabaya\nPakal\n60276"
     @State private var phoneNumber: String = "812 2947 7204"
-
+    
     let segments = ["Account", "History"]
-
+    
     var body: some View {
         VStack {
             // Segmented Picker
             Picker("", selection: $selectedSegment) {
                 ForEach(0..<segments.count) { index in
                     Text(segments[index])
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.primary)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
-
+            
             // Content based on selected segment
             if selectedSegment == 0 {
-                AccountView(email: $email, name: $name, language: $language, address: $address, provinceCityDistrict: $provinceCityDistrict, phoneNumber: $phoneNumber)
+                AccountView(email: $email, name: $name, address: $address, provinceCityDistrict: $provinceCityDistrict, phoneNumber: $phoneNumber)
             } else {
                 HistoryView()
             }
-
+            
             Spacer()
-
+            
             // Bottom Navigation Bar
             HStack {
                 Spacer()
@@ -107,11 +106,10 @@ struct CombinedView: View {
 struct AccountView: View {
     @Binding var email: String
     @Binding var name: String
-    @Binding var language: String
     @Binding var address: String
     @Binding var provinceCityDistrict: String
     @Binding var phoneNumber: String
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -121,71 +119,76 @@ struct AccountView: View {
                     VStack {
                         Image(systemName: "person.circle.fill")
                             .resizable()
-                            .frame(width: 80, height: 80)
+                            .frame(width: 90, height: 90)
                             .clipShape(Circle())
                     }
                     Spacer()
                 }
                 .padding(.top)
-
+                
                 // Form Fields
-                VStack(alignment: .leading, spacing: 15) {
+                VStack(alignment: .leading, spacing: 17) {
                     // Email Field
                     Text("Email")
-                        .font(.subheadline)
+                        .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.gray)
                     TextField("Email", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(11) // Add padding for better spacing
+                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.gray, lineWidth: 1)) // Custom border style
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-
+                    
                     // Name Field
                     Text("Name")
-                        .font(.subheadline)
+                    //                        .font(.subheadline)
+                        .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.gray)
                     TextField("Name", text: $name)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                    // Language Picker
-                    Text("Language")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    Picker("Language", selection: $language) {
-                        Text("Indonesia").tag("Indonesia")
-                        Text("English").tag("English")
-                    }
-                    .pickerStyle(MenuPickerStyle())
-
+                        .padding(11) // Add padding for better spacing
+                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.gray, lineWidth: 1)) // Custom border style
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    
                     // Address Field
                     Text("Address")
-                        .font(.subheadline)
+                    //                        .font(.subheadline)
+                        .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.gray)
                     TextField("Address", text: $address)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                        .padding(11) // Add padding for better spacing
+                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.gray, lineWidth: 1)) // Custom border style
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    
                     // Province, City, District, Postal Code
                     Text("Province, City, District, Postal Code")
-                        .font(.subheadline)
+                        .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.gray)
                     TextField("Province, City, District, Postal Code", text: $provinceCityDistrict)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(11) // Add padding for better spacing
+                        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.gray, lineWidth: 1))
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
                         .lineLimit(nil)
-
+                    
                     // Phone Number
                     Text("Phone Number")
-                        .font(.subheadline)
+                        .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.gray)
                     HStack {
                         Text("+62")
                             .font(.body)
                             .foregroundColor(.gray)
                         TextField("Phone Number", text: $phoneNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(11) // Add padding for better spacing
+                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.gray, lineWidth: 1)) // Custom border style
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
                             .keyboardType(.numberPad)
                     }
                 }
                 .padding(.horizontal)
-
+                
                 // Reset Password Button
                 Button(action: {
                     print("Reset Password Tapped")
@@ -193,23 +196,19 @@ struct AccountView: View {
                     Text("Reset Password")
                         .font(.footnote)
                         .foregroundColor(.brown)
-                        .underline()
                 }
                 .padding(.bottom)
             }
-            .navigationTitle("Account")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing:
                                     Button(action: {
                 print("Edit Profile tapped")
             }) {
                 Text("Edit Profile")
-                    .font(.footnote)
-                    .foregroundColor(.green)
-                    .padding(6)
+                    .foregroundColor(.black)
+                    .padding(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.green, lineWidth: 1)
+                            .stroke(Color(red: 203/255, green: 210/255, blue: 164/255))
                     )
             }
             )
@@ -220,18 +219,6 @@ struct AccountView: View {
 struct HistoryView: View {
     var body: some View {
         VStack {
-            // Header
-            HStack {
-                Text("Account")
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                Spacer()
-                Text("History")
-                    .font(.headline)
-                    .bold()
-            }
-            .padding()
-            
             Divider()
             
             // Total Points
@@ -274,7 +261,7 @@ struct HistoryView: View {
                 }
                 .padding(.horizontal)
             }
-           
+            
             .padding()
             .background(Color(UIColor.systemGroupedBackground))
         }
@@ -320,7 +307,8 @@ struct HistoryCard: View {
             .font(.footnote)
             .foregroundColor(.gray)
             .padding()
-            .background(Color(UIColor.systemGroupedBackground))
+            //            .background(Color(UIColor.systemGroupedBackground))
+            .background(Color(red: 203/255, green: 210/255, blue: 164/255))
             .cornerRadius(10)
         }
     }
