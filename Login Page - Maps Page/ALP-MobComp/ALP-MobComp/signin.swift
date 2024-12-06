@@ -1,6 +1,13 @@
+//
+//  signup.swift
+//  ALP-MobComp
+//
+//  Created by student on 29/11/24.
+//
+
 import SwiftUI
 
-struct Login: View {
+struct signin: View {
     let BrownColor = Color(red: 84/255, green: 71/255, blue: 63/255)
     let GreenColor = Color(red: 203/255, green: 210/255, blue: 165/255)
     let SoftBrownColor = Color(red: 154/255, green: 126/255, blue: 111/255)
@@ -30,7 +37,7 @@ struct Login: View {
                 RoundedRectangle(cornerRadius: 55)
                     .fill(Color.white)
                     .frame(height: 800)
-                    .position(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height * 2.38 / 4)
+                    .position(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height * 3 / 5)
                 
                 VStack(spacing: 20) { // Add spacing between fields
                     // Email text field
@@ -108,6 +115,12 @@ struct Login: View {
                             .bold()
                     }
                     .padding(.horizontal)
+                    NavigationLink(destination: signup()) {
+                        Text("Don't have an account?")
+                            .foregroundColor(.blue)
+                            .underline()
+                            .padding(.top, 11)
+                    }
                 }
             }
         }
@@ -116,5 +129,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login()
+    signin()
 }

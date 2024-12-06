@@ -111,6 +111,8 @@ struct maps: View {
                 }
                 .padding()
                 .background(Color(red: 203/255, green: 210/255, blue: 164/255))
+                .cornerRadius(20)
+                .ignoresSafeArea()
             }
 
             // Bottom Sheet for Details
@@ -122,7 +124,7 @@ struct maps: View {
                             .foregroundColor(.gray)
 
                         Text("San Jose International Airport")
-                            .font(.title2)
+                            .font(.system(size: 10))
                             .fontWeight(.bold)
 
                         Text("Mineta San José International Airport")
@@ -176,7 +178,7 @@ struct BottomSheetView<Content: View>: View {
 
     var body: some View {
         VStack {
-            Spacer() // Pushes the sheet to the bottom
+            Spacer()// Pushes the sheet to the bottom
             VStack {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.gray.opacity(0.5))
@@ -189,7 +191,6 @@ struct BottomSheetView<Content: View>: View {
             .cornerRadius(20)
             .shadow(radius: 10)
         }
-        .ignoresSafeArea()
         .transition(.move(edge: .bottom)) // Slide-in animation
     }
 }
